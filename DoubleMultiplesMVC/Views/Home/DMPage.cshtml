@@ -1,0 +1,53 @@
+﻿@model DoubleMultiplesMVC.Models.DoubleMultiple
+
+<div class="container col-xxl-8 px-4 py-5 mt-5">
+    <div class="row gy-2 h-100 row-cols-md-2 row-cols-1">
+        <div class="col border-2 border-end">
+            <h1 class="fw-bold lh-1 mb-3">Double Multiples</h1>
+            <h4 class="lead">
+                This application will consider two provided numbers and for each number between 1 and 100.
+                It will print Double for the numbers divisible by the first number provided. Multiple will
+                print for the numbers divisible by the second number provided. Lastly, DoubleMultiple will
+                print for the numbers divisible by both provided numbers.
+            </h4>
+
+            <h2 class="mt-5 border-bottom border-2">Instructions</h2>
+            <p>
+                Enter 2 numbers.
+            </p>
+        </div>
+        <div class="col">
+            <div>
+                <h5>Enter Numbers</h5>
+                @* Form here*@
+                <form asp-controller="Home" asp-action="DMPage" method="post">
+                    <div class="form-group">
+                        <label asp-for="DoubleValue">Double Value</label>
+                        <input type="number" asp-for="DoubleValue" class="form-control" placeholder="Enter Double Value" value="@Model.DoubleValue" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MultipleValue">Multiple Value</label>
+                        <input type="number" asp-for="MultipleValue" class="form-control" placeholder="Enter Multiple Value" value="@Model.MultipleValue" />
+                    </div>
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </form>
+                <h2 class="mt-5 border-bottom border-2">Results</h2>
+                <div class="table-responsive">
+                    @*Table here*@
+                    @if (Model.Result.Count > 0) 
+                    {
+                        <table class="table-striped table-hover table table-dark">
+                            <thead>
+                                <tr><th colspan="5">Double Multiple Results</th></tr>
+                            </thead>
+                            @for (int i = 0; i < Model.Result.Count(); i += 5)
+                            {
+                                <tr><td>@Model.Result[i]</td><td>@Model.Result[i + 1]</td><td>@Model.Result[i + 2]</td><td>@Model.Result[i + 3]</td><td>@Model.Result[i + 4]</td></tr>
+                            }
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
